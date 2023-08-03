@@ -6,9 +6,9 @@ import { NotFoundComponent } from './core/components/not-found/not-found.compone
 import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'admin', canActivate: [AuthGuard], loadChildren: () => import('./core/modules/admin/admin.module').then((m) => m.AdminModule),},
   {path: '**', component: NotFoundComponent},
 ];

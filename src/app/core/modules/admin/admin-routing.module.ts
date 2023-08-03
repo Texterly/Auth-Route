@@ -5,13 +5,14 @@ import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { ServicesComponent } from './components/services/services.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { formGuardFn } from '../../guards/form.guard';
 
 const routes: Routes = [{path: '', component: AdminDasnboardComponent, children: [
-    {path: 'home', component: HomeComponent},
+    {path: 'home', canDeactivate: [formGuardFn], component: HomeComponent},
     {path: 'about', component: AboutComponent},
     {path: 'services', component: ServicesComponent},
     {path: 'contact', component: ContactComponent},
-    {path: '', redirectTo: '/admin/home', pathMatch: 'full' },
+    {path: '**', redirectTo: '/admin/home', pathMatch: 'full' },
   ]}];
 
 @NgModule({
